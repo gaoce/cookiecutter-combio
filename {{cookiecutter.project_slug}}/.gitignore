@@ -20,3 +20,5 @@ results/
 # macOS
 .DS_Store
 
+# Keep folders with .gitkeep
+!.gitkeep
