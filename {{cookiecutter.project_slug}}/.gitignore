@@ -1,0 +1,22 @@
+# exclude compiled binaries
+lib/
+
+# exclude log files 
+log/
+
+# exclude data from source control by default
+data/
+
+# exclude reports and results
+reports/
+results/
+
+# Rstudio
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+# macOS
+.DS_Store
+
