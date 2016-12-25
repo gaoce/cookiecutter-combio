@@ -6,12 +6,10 @@ stamp:      stamp_str := $(shell date '+%Y_%m_%d')        ## [Supp] Create sub-f
 stamp-time: stamp_str := $(shell date '+%Y_%m_%d-%H_%M')  ## [Supp] In a rare situation, create sub-folders with date-time stamp.
 dirs = results data log
 stamp stamp-time:
-	@# Remove `current` symlinks
-	@for dir in ${dirs}; do rm -f $${dir}/current; done
 	@# Create within each folder (${dirs}) a sub-folder with date or date-time stamp
 	@for dir in ${dirs}; do mkdir -p $${dir}/$${dir}_${stamp_str}; done
 	@# Link `current` to newly created sub-folders
-	@for dir in ${dirs}; do cd $${dir}; ln -s $${dir}_${stamp_str} current; cd ..; done
+	@for dir in ${dirs}; do cd $${dir}; ln -sf $${dir}_${stamp_str} current; cd ..; done
 	@# Report to stdout
 	@echo "Project date[-time] stamp created."
 	@for dir in ${dirs}; do printf "%11s/current -> %15s_${stamp_str}\n" $${dir} "$${dir}/$${dir}"; done
