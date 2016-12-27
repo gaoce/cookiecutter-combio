@@ -9,7 +9,7 @@ stamp stamp-time:
 	@# Create within each folder (${dirs}) a sub-folder with date or date-time stamp
 	@for dir in ${dirs}; do mkdir -p $${dir}/$${dir}_${stamp_str}; done
 	@# Link `current` to newly created sub-folders
-	@for dir in ${dirs}; do cd $${dir}; ln -sf $${dir}_${stamp_str} current; cd ..; done
+	@for dir in ${dirs}; do cd $${dir}; rm -f current; ln -sf $${dir}_${stamp_str} current; cd ..; done
 	@# Report to stdout
 	@echo "Project date[-time] stamp created."
 	@for dir in ${dirs}; do printf "%11s/current -> %15s_${stamp_str}\n" $${dir} "$${dir}/$${dir}"; done
