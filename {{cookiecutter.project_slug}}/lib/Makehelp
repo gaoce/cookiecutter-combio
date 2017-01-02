@@ -19,3 +19,6 @@ stamp stamp-time: tag
 tag:  ## [Supp] Create/update a git tag with the current date[-time] stamp
 	@if [ -a data/current ]; then git tag -f $$(basename $$(readlink data/current) | sed 's/data_//'); fi
 	@if [ -a data/current ]; then echo "Tagging current code status: $$(basename $$(readlink data/current) | sed 's/data_//')"; fi
+
+protect: ## [Supp] Protect files in sensitive folder (data/raw) by remove write permission
+	@find data/raw -type f -exec chmod a-w {} \;
