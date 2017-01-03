@@ -1,1 +1,1 @@
-include lib/Makehelp
+include config/Makehelp
