@@ -22,3 +22,7 @@ tag:  ## [Supp] Create/update a git tag with the current date[-time] stamp
 
 protect: ## [Supp] Protect files in sensitive folder (data/raw) by remove write permission
 	@find data/raw -type f -exec chmod a-w {} \;
+
+add:  ## [Supp] Add target (use `make add target=<TARGET_NAME>` syntax, see README)
+	@echo '\n.PHONY: ${target}\n${target} := _OUTPUT_\n${target}: $${${target}}  ## _COMMENTS_\n$${${target}}: _INPUT_\n\t_COMMANDS_' >> Makefile
+	@echo 'Target `${target}` added. Please open Makefile and edit _OPTIONS_.'
