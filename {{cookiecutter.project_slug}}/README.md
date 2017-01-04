@@ -11,6 +11,7 @@ Project Organization
     |-- LICENSE                 [Optional] license.
     |-- Makefile                Provide make targets for computation automatation.
     |-- README.md               This file.
+    |-- config                  Config files
     |-- data                    Data folders.
     |   |-- current             Symlink, points to the latest data folder.
     |   |-- data_yyyy_mm_dd     Data files with date stamp.
