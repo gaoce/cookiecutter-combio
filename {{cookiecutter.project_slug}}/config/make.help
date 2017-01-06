@@ -9,7 +9,7 @@ help: ## [Help] Show this help message. [Help] indicates supporting utilities.
 
 stamp:      stamp_str := $(shell date '+%Y_%m_%d')        ## [Help] Create sub-folders in `results`, `data` and `log` with date stamp, pointed by `current`s inside.
 stamp-time: stamp_str := $(shell date '+%Y_%m_%d-%H_%M')  ## [Help] In a rare situation, create sub-folders with date-time stamp.
-dirs = results data log
+dirs = reports results data log
 stamp stamp-time: tag
 	@# Create within each folder (${dirs}) a sub-folder with date or date-time stamp
 	@for dir in ${dirs}; do mkdir -p $${dir}/$${dir}_${stamp_str}; done
@@ -28,7 +28,3 @@ protect: ## [Help] Protect files in sensitive folder (data/raw) by remove write 
 
 tmux:  ## [Help] Begin tmux session using tmuxp (config/.tmuxp.yaml)
 	@tmuxp load config/
-
-add:  ## [Help] Add target (use `make add target=<TARGET_NAME>` syntax, see README)
-	@echo '\n.PHONY: ${target}\n${target} := _OUTPUT_\n${target}: $${${target}}  ## _COMMENTS_\n$${${target}}: _INPUT_\n\t_COMMANDS_\n' >> Makefile
-	@echo 'Target `${target}` added. Please open Makefile and edit _OPTIONS_.'
