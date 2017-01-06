@@ -3,7 +3,7 @@
 # Ensure compatibility
 SHELL = /bin/bash
 
-help: ## [Help] Show this help message. [Help] indicates supporting utilities.
+help: ## [Help] Show this message. [Help] indicates supporting utilities.
 	@echo -e 'Usage:\n\tmake <target>\n\nTargets:'
 	@sed -n -e 's/^\([^@:]*\):\(.*\)#\+ \+\(.*\)/\t\1#\3/p' ${MAKEFILE_LIST} | column -t -c 2 -s '#'
 
