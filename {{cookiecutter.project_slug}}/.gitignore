@@ -3,10 +3,8 @@ lib/
 
 # Exclude config
 config/
-!config/Makehelp
 
-
-# exclude log files 
+# Exclude log files
 log/
 
 # exclude data from source control by default
