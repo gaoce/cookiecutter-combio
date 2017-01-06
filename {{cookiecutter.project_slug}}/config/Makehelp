@@ -1,11 +1,11 @@
 # vim: noexpandtab filetype=make
 
-help: ## [Supp] Show this help message. [Supp] indicates supporting utilities.
+help: ## [Help] Show this help message. [Help] indicates supporting utilities.
 	@echo -e 'Usage:\n\tmake <target>\n\nTargets:'
 	@sed -n -e 's/^\([^@:]*\):\(.*\)#\+ \+\(.*\)/\t\1#\3/p' ${MAKEFILE_LIST} | column -t -c 2 -s '#'
 
-stamp:      stamp_str := $(shell date '+%Y_%m_%d')        ## [Supp] Create sub-folders in `results`, `data` and `log` with date stamp, pointed by `current`s inside.
-stamp-time: stamp_str := $(shell date '+%Y_%m_%d-%H_%M')  ## [Supp] In a rare situation, create sub-folders with date-time stamp.
+stamp:      stamp_str := $(shell date '+%Y_%m_%d')        ## [Help] Create sub-folders in `results`, `data` and `log` with date stamp, pointed by `current`s inside.
+stamp-time: stamp_str := $(shell date '+%Y_%m_%d-%H_%M')  ## [Help] In a rare situation, create sub-folders with date-time stamp.
 dirs = results data log
 stamp stamp-time: tag
 	@# Create within each folder (${dirs}) a sub-folder with date or date-time stamp
@@ -16,16 +16,16 @@ stamp stamp-time: tag
 	@echo "Project date[-time] stamp created."
 	@for dir in ${dirs}; do printf "%11s/current -> %15s_${stamp_str}\n" $${dir} "$${dir}/$${dir}"; done
 
-tag:  ## [Supp] Create/update a git tag with the current date[-time] stamp
+tag:  ## [Help] Create/update a git tag with the current date[-time] stamp
 	@if [ -a data/current ]; then git tag -f $$(basename $$(readlink data/current) | sed 's/data_//'); fi
 	@if [ -a data/current ]; then echo "Tagging current code status: $$(basename $$(readlink data/current) | sed 's/data_//')"; fi
 
-protect: ## [Supp] Protect files in sensitive folder (data/raw) by remove write permission
+protect: ## [Help] Protect files in sensitive folder (data/raw) by remove write permission
 	@find data/raw -type f -exec chmod a-w {} \;
 
-tmuxp:  ## [Supp] Load tmuxp file
+tmux:  ## [Help] Begin tmux session using tmuxp (config/.tmuxp.yaml)
 	@tmuxp load config/
 
-add:  ## [Supp] Add target (use `make add target=<TARGET_NAME>` syntax, see README)
-	@echo '\n.PHONY: ${target}\n${target} := _OUTPUT_\n${target}: $${${target}}  ## _COMMENTS_\n$${${target}}: _INPUT_\n\t_COMMANDS_' >> Makefile
+add:  ## [Help] Add target (use `make add target=<TARGET_NAME>` syntax, see README)
+	@echo '\n.PHONY: ${target}\n${target} := _OUTPUT_\n${target}: $${${target}}  ## _COMMENTS_\n$${${target}}: _INPUT_\n\t_COMMANDS_\n' >> Makefile
 	@echo 'Target `${target}` added. Please open Makefile and edit _OPTIONS_.'
