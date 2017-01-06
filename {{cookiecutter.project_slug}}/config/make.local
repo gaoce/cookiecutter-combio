@@ -1,1 +1,26 @@
 # vim: noexpandtab filetype=make
+
+# r_: remote
+# Hostname
+r_host =
+
+# ssh alias
+r_name =
+
+# root directory
+r_root =
+
+# R CMD
+r_rcmd = R CMD BATCH --vanilla --slave
+
+# Folders excluded for rsync
+r_excl = --exclude=data --exclude=.snakemake --exclude=.Rproj.user --exclude=.git
+
+# l_: local
+l_excl = ${r_excl}
+
+upload:  ## [Help] Upload local scripts
+	rsync -azrv ./ ${r_name}:${r_root}/ ${l_excl}
+
+download:  ## [Help] Download remote
+	rsync -azrv ${r_name}:${r_root}/ ./ ${r_excl}
