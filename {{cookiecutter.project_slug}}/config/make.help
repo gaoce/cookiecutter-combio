@@ -9,7 +9,7 @@ help: ## [Help] Show this message. [Help] indicates supporting utilities.
 
 stamp:      stamp_str := $(shell date '+%Y_%m_%d')        ## [Help] Create sub-folders in `results`, `data` and `log` with date stamp, pointed by `current`s inside.
 stamp-time: stamp_str := $(shell date '+%Y_%m_%d-%H_%M')  ## [Help] In a rare situation, create sub-folders with date-time stamp.
-dirs = reports results data log
+dirs = reports results log
 stamp stamp-time: tag
 	@# Create within each folder (${dirs}) a sub-folder with date or date-time stamp
 	@for dir in ${dirs}; do mkdir -p $${dir}/$${dir}_${stamp_str}; done
