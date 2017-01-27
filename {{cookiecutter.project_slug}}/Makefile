@@ -1,2 +1,2 @@
 include config/make.help
-include config/make.local
+-include config/make.local
