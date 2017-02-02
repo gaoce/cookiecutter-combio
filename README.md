@@ -1,5 +1,5 @@
-cookiecutter-combio-analysis
-============================
+cookiecutter-combio
+===================
 
 A [cookiecutter](https://github.com/audreyr/cookiecutter) template for
 organizing a general computational biology analysis project. It is suitable for
@@ -10,7 +10,7 @@ Instruction
 
 To start a new computational biology project:
 
-`cookiecutter gh:gaoce/cookiecutter-combio-analysis`
+`cookiecutter gh:gaoce/cookiecutter-combio`
 
 Then follow the steps below:
 
@@ -45,21 +45,18 @@ Project Organization
     |   |-- make.help
     |   |-- make.sync
     |   `-- ...
-    |-- lib                     Extenal code/binary files.
-    |-- data                    Data folders.
-    |   `-- raw                 Folder with raw data.
-    |-- log                     Log files.
-    |   |-- current
-    |   |-- log_yyyy_mm_dd
-    |   `-- ...
-    |-- reports                 Reports, notes, figures for publication.
-    |   |-- current
+    |-- history                 History folder
+    |   |--    data_yyyy_mm_dd
+    |   |--     log_yyyy_mm_dd
     |   |-- reports_yyyy_mm_dd
-    |   `-- ...
-    |-- results                 Results.
-    |   |-- current
     |   |-- results_yyyy_mm_dd
     |   `-- ...
+    |-- lib                     Extenal code/binary files.
+    |-- data                    Data folders.
+    |-- log                     Log files.
+    |-- raw                     Raw data.
+    |-- reports                 Reports, notes, figures for publication.
+    |-- results                 Results.
     `-- src                     Scripts/software created for this project.
 
 Rationale and Assumptions
@@ -76,23 +73,15 @@ Details
 -------
 
 A `Makefile` file is provided for development automation. The targets are
-in two files: `config/make.help` has the basic utilities, `config/make.sync`
-contains targets to sync with remote server (you need to fill in the server
-info).
+in two files: `config/make.help` has the basic utilities, `config/make.local`
+is optional and contains private settings.
 
-When the project is created, a git repo is initialized, but not committed.
+When the project is created, a git repo is initialized, but not committed. 4
+folders `data`, `log`, `results`, `reports` are created, But they are just
+symbolic links to the corresponding folders in `history` with date stamp.
 
-The first step is `make stamp` to create date-stamped folders in `reports`,
-`results` and `log` directories. There will be a `current` symlink points to
-these folders, so your code should only consider `current`.
-
-`data` directory has a `raw` folder, contains data from outside the project.
-They should not be touched, ever.
-
-Intermediate data should be kept in `data` and not date-stamped. This practice
-1) saves storage space and 2) avoids unnecessary common data re-building. These
-huge data files should not be generated carelessly and by no means their sizes
-alone be considered the project outcome.
+There are alos `raw` and `lib` folders, contains data/code/software from
+external sources. They should be read only.
 
 License
 -------
