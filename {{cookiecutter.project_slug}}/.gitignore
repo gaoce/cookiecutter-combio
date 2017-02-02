@@ -7,12 +7,14 @@ config/
 # Exclude log files
 log/
 
-# exclude data from source control by default
+# exclude data and raw data from source control by default
 data/
+raw/
 
 # exclude reports and results
 reports/
 results/
+history/
 
 # Rstudio
 .Rproj.user
